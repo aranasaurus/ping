@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 160, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 90 )
+
+[node name="GameBoard" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 0.294434, 179.957 ],
+"_edit_vertical_guides_": [ 320.374, 0.16597 ]
+}
+
+[node name="Ball" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160, 90 )
+gravity_scale = 0.0
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 25, 90 )
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+position = Vector2( 160, -10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+shape = SubResource( 1 )
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+position = Vector2( 160, 190 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+shape = SubResource( 1 )
+
+[node name="PlayerGoal" type="StaticBody2D" parent="."]
+position = Vector2( -10, 90 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoal"]
+position = Vector2( -0.346176, -0.346176 )
+shape = SubResource( 2 )
+
+[node name="EnemyGoal" type="StaticBody2D" parent="."]
+position = Vector2( 330, 90 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyGoal"]
+shape = SubResource( 2 )
